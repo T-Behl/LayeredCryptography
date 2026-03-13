@@ -271,7 +271,7 @@ def pagemovement(version):
         case 1: #disclaimer -> startup
             clearpage()
             text_frame.config(height=12)
-            text_frame.insert(index=END,chars="Cryptography’s main purpose is to protect data that needs to be confidential by making the data unreadable and incoherent to the human eye. The two ways of doing this are hashing and encryption. In some cases, using both is highly recommended.\n")
+            text_frame.insert(index=END,chars="The main purpose of cryptography is to protect data that needs to be confidential by making the data unreadable and incoherent to the human eye. The two ways of doing this are hashing and encryption. In some cases, using both is highly recommended.\n")
             text_frame.insert(index=END, chars="\nOne example is securing account login data. Leaving this data where anyone can read it, called plaintext, is extremely risky and seen as breaking a lot of frameworks and regulations. Yet we still need to use this data because it is how anyone logs in to the software or website. So how can we hide the data but still be able to use the data?\n")
             text_frame.insert(index=END, chars="\nBy hashing of course!")
             NextPage.config(command=lambda: pagemovement(2)) #update Next Page button for another page turn
@@ -403,7 +403,7 @@ def pagemovement(version):
 #create GUI foundations
 gui_root = Tk()
 styles = ttk.Style()
-gui_root.title("Layered Cryptagraphy Lab")
+gui_root.title("Layered Cryptography Lab")
 gui_root.geometry("1000x500")
 styles.configure("Placeholder.TEntry",foreground="grey")
 gui_mainframe = ttk.Frame(gui_root, padding=(3,3,12,12))
