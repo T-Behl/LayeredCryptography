@@ -111,10 +111,10 @@ SHA1_list = []
 SHA256_list = []
 Blake2_list = []
 current_hash = None
-for i in range(1,7): #edit this to only being the first 5 passwords in file!
+for i in range(1,7):
     password = all_accounts[i][1]
     password = str(password)
-    SHA1_i = hashSHA1(password) #issue: hashes are very different from preview to file!!
+    SHA1_i = hashSHA1(password)
     SHA256_i = hashSHA256(password)
     Blake2_i = hashblake2(password)
     SHA1_list.append((all_accounts[i][0],SHA1_i))
@@ -139,7 +139,7 @@ def hashingfile(action):
             messages = SHA256_list
             current_hash = "SHA256"
             dynamic_text_frame.insert(index=END,chars="This is the most common hashing algorithm. This is because it’s so quick and still gives you plenty of characters to have the digest be secure!")
-        case "Blake2": #shift to SHA256
+        case "Blake2": #shift to Blake2
             messages = Blake2_list
             current_hash = "Blake2"
             dynamic_text_frame.insert(index=END,chars="This algorithm is used when time is an extremely important consideration when hashing data. When your application needs real-time processes, use this algorithm to keep up with the pace! ")
@@ -177,7 +177,6 @@ def editStoredAccounts(action=False): #edit passwords of all accounts
         start_index = f"{float(dynamic_text_frame.index('end'))-1} linestart"
         end_index = "end-1c"
         dynamic_text_frame.tag_add("red_text", start_index, end_index)
-        #ISSUE: first build has the convert to plaintext dialog. Should not be happening
     else:
         return
 def AddAccount():
@@ -277,7 +276,7 @@ def pagemovement(version):
             NextPage.config(command=lambda: pagemovement(2)) #update Next Page button for another page turn
         case 2: #startup -> hashing
             try: #check if desktop is with OneDrive
-                with password_path.open(mode="w", encoding="utf-8") as file: #check OG path can create file
+                with password_path.open(mode="w+", encoding="utf-8") as file: #check OG path can create file
                     file.read() #should come as empty
             except FileNotFoundError: #if file can't be created do all this ->
                 global new_desktop_path #new global to check if it exists
